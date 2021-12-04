@@ -24,7 +24,7 @@ class HomeView extends StatelessWidget {
             Icon(Icons.search, color: Colors.black),
           ]),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: ListView(
           children: const [
             SizedBox(
@@ -43,6 +43,29 @@ class HomeView extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Card(
+          color: const Color.fromRGBO(220, 229, 238, 1),
+          // color: Colors.blue[50],
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: const [
+                Icon(Icons.check_circle),
+                Text("Completed"),
+                Icon(Icons.arrow_drop_down),
+                Spacer(),
+                Text("24")
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -54,33 +77,36 @@ class TodoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 10,
-      child: ListTile(
-        leading: const Icon(
-          Icons.check_circle_outline,
-          color: Colors.pink,
-        ),
-        title: const Text("Plan the trip to Finland"),
-        subtitle: const Text(
-          "We'd like to directly mention certain contributors (in alphabetical order) for their continued community",
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: const [
-            Icon(
-              Icons.notifications,
-              color: Colors.pink,
-            ),
-            Text(
-              "Yestreday",
-              style: TextStyle(
+    return Padding(
+      padding: const EdgeInsets.all(7.0),
+      child: Card(
+        elevation: 10,
+        child: ListTile(
+          leading: const Icon(
+            Icons.check_circle_outline,
+            color: Colors.pink,
+          ),
+          title: const Text("Plan the trip to Finland"),
+          subtitle: const Text(
+            "We'd like to directly mention certain contributors (in alphabetical order) for their continued community",
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Icon(
+                Icons.notifications,
                 color: Colors.pink,
               ),
-            ),
-          ],
+              Text(
+                "Yestreday",
+                style: TextStyle(
+                  color: Colors.pink,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
