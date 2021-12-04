@@ -23,22 +23,25 @@ class HomeView extends StatelessWidget {
             Icon(Icons.filter_list, color: Colors.black),
             Icon(Icons.search, color: Colors.black),
           ]),
-      body: ListView(
-        children: const [
-          SizedBox(
-            height: 5,
-          ),
-          TodoWidget(),
-          TodoWidget(),
-          TodoWidget(),
-          TodoWidget(),
-          TodoWidget(),
-          TodoWidget(),
-          TodoWidget(),
-          TodoWidget(),
-          TodoWidget(),
-          TodoWidget()
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: const [
+            SizedBox(
+              height: 5,
+            ),
+            TodoWidget(),
+            TodoWidget(),
+            TodoWidget(),
+            TodoWidget(),
+            TodoWidget(),
+            TodoWidget(),
+            TodoWidget(),
+            TodoWidget(),
+            TodoWidget(),
+            TodoWidget()
+          ],
+        ),
       ),
     );
   }
