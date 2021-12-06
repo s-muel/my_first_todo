@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_todo_app1/create_todo_view.dart';
+
+import 'create_todo_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -32,7 +35,11 @@ class HomeView extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return CreateToDo();
+          }));
+        },
         child: const Icon(Icons.add),
       ),
       bottomSheet: Padding(
@@ -58,7 +65,6 @@ class HomeView extends StatelessWidget {
               ],
             ),
           ),
-          
         ),
       ),
     );
