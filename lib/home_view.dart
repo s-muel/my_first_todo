@@ -27,19 +27,7 @@ class HomeView extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: ListView(
           children: const [
-            SizedBox(
-              height: 5,
-            ),
             TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget()
           ],
         ),
       ),
@@ -57,13 +45,20 @@ class HomeView extends StatelessWidget {
             child: Row(
               children: const [
                 Icon(Icons.check_circle),
+                SizedBox(
+                  width: 10,
+                ),
                 Text("Completed"),
+                SizedBox(
+                  width: 3,
+                ),
                 Icon(Icons.arrow_drop_down),
                 Spacer(),
                 Text("24")
               ],
             ),
           ),
+          
         ),
       ),
     );

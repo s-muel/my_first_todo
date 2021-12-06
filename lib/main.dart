@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'home_view.dart';
 
+
+
 void main() {
   runApp(const MyApp());
 }
@@ -18,8 +20,11 @@ class MyApp extends StatelessWidget {
         
         primarySwatch: Colors.blue,
       ),
+      //This HomeView() is a class in home_view.dart
       home: const HomeView(),
     );
   }
 }
+
+
 
