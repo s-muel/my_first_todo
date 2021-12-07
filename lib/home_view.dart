@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:my_todo_app1/create_todo_view.dart';
 
 import 'create_todo_view.dart';
@@ -37,32 +38,46 @@ class HomeView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return CreateToDo();
+            return const CreateToDo();
           }));
         },
         child: const Icon(Icons.add),
       ),
-      bottomSheet: Padding(
+      bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Card(
-          color: const Color.fromRGBO(220, 229, 238, 1),
-          // color: Colors.blue[50],
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Row(
-              children: const [
-                Icon(Icons.check_circle),
-                SizedBox(
-                  width: 10,
-                ),
-                Text("Completed"),
-                SizedBox(
-                  width: 3,
-                ),
-                Icon(Icons.arrow_drop_down),
-                Spacer(),
-                Text("24")
-              ],
+        // This is the card at the bottom of the home page showing
+        // the completed task and the number of completed task
+        child: InkWell(
+          onTap: () {
+            // this is the bottom sheet that displays our completed task
+            showBarModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return ListView(
+                    children: [CreateToDo(), CreateToDo(), CreateToDo()  ],
+                  );
+                });
+          },
+          child: Card(
+            color: const Color.fromRGBO(220, 229, 238, 1),
+            // color: Colors.blue[50],
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                children: const [
+                  Icon(Icons.check_circle),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text("Completed"),
+                  SizedBox(
+                    width: 3,
+                  ),
+                  Icon(Icons.arrow_drop_down),
+                  Spacer(),
+                  Text("24")
+                ],
+              ),
             ),
           ),
         ),
