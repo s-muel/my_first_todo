@@ -30,7 +30,7 @@ class CreateToDo extends StatelessWidget {
                   decoration: const InputDecoration(label: Text("Date")),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Expanded(
@@ -39,6 +39,20 @@ class CreateToDo extends StatelessWidget {
                 ),
               )
             ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: TextButton(
+              onPressed: () {},
+              child: const Text(
+                "Create",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              style: TextButton.styleFrom(backgroundColor: Colors.blue),
+            ),
           )
         ],
       ),
