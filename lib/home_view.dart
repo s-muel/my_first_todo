@@ -31,7 +31,11 @@ class HomeView extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: ListView(
           children: const [
-            TodoWidget(),
+            TodoWidget(
+              task: "Plan Trip to Canada",
+              description: "I will be going to Canada this weekend",
+              time: "Tomorrow",
+            ),
           ],
         ),
       ),
@@ -54,7 +58,13 @@ class HomeView extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return ListView(
-                    children: [CreateToDo(), CreateToDo(), CreateToDo()  ],
+                    children: [
+                      TodoWidget(
+                        task: "Plan Trip to Canada",
+                        description: "I will be going to Canada this weekend",
+                        time: "Yesterday",
+                      )
+                    ],
                   );
                 });
           },
@@ -86,10 +96,18 @@ class HomeView extends StatelessWidget {
   }
 }
 
+// this is the widget that contains the todo task
 class TodoWidget extends StatelessWidget {
   const TodoWidget({
     Key? key,
+    required this.task,
+    required this.description,
+    required this.time,
   }) : super(key: key);
+// this is the variable for the title
+  final String task;
+  final String description;
+  final String time;
 
   @override
   Widget build(BuildContext context) {
@@ -102,22 +120,22 @@ class TodoWidget extends StatelessWidget {
             Icons.check_circle_outline,
             color: Colors.pink,
           ),
-          title: const Text("Plan the trip to Finland"),
-          subtitle: const Text(
-            "We'd like to directly mention certain contributors (in alphabetical order) for their continued community",
+          title: Text(task),
+          subtitle: Text(
+            description,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
-            children: const [
-              Icon(
+            children: [
+              const Icon(
                 Icons.notifications,
                 color: Colors.pink,
               ),
               Text(
-                "Yestreday",
-                style: TextStyle(
+                time,
+                style: const TextStyle(
                   color: Colors.pink,
                 ),
               ),
