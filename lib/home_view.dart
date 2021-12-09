@@ -5,8 +5,34 @@ import 'package:my_todo_app1/utilities.dart';
 
 import 'create_todo_view.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  HomeView({Key? key}) : super(key: key);
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final List<Map<String, dynamic>> mydatabase = [
+    {
+      'title': 'Plan trip to Accra',
+      'description': 'I will be going to Accra',
+      'time': 'Yesterday',
+      'isCompleted': false
+    },
+    {
+      'title': 'Work on final flutter project',
+      'description': 'Submit final project before 28 of this month',
+      'time': 'Tomorrow',
+      'isCompleted': true
+    },
+    {
+      'title': 'Grade assignment',
+      'description': 'Grade the assignment before the ending of December',
+      'time': 'Today',
+      'isCompleted': false
+    }
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +54,19 @@ class HomeView extends StatelessWidget {
             Icon(Icons.filter_list, color: Colors.black),
             Icon(Icons.search, color: Colors.black),
           ]),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: ListView(
-          children: const [
-            TodoWidget(
-              task: "Plan Trip to Canada",
-              description: "I will be going to Canada this weekend",
-              time: "Tomorrow",
-            ),
-          ],
-        ),
-      ),
+      body: ListView.separated(
+          itemBuilder: (context, index) {
+            return TodoWidget(
+                task: mydatabase[index]['title'],
+                description: mydatabase[index]['description'],
+                time: mydatabase[index]['time']);
+          },
+          separatorBuilder: (context, index) {
+            return const SizedBox(
+              height: 5,
+            );
+          },
+          itemCount: mydatabase.length),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
