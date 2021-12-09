@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:my_todo_app1/create_todo_view.dart';
+import 'package:my_todo_app1/utilities.dart';
 
 import 'create_todo_view.dart';
 
@@ -58,11 +59,21 @@ class HomeView extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return ListView(
-                    children: [
+                    children: const [
                       TodoWidget(
                         task: "Plan Trip to Canada",
                         description: "I will be going to Canada this weekend",
                         time: "Yesterday",
+                      ),
+                      TodoWidget(
+                        task: "Plan Trip to Canada",
+                        description: "I will be going to Canada this weekend",
+                        time: "Today",
+                      ),
+                      TodoWidget(
+                        task: "We will learn about dummy database",
+                        description: "I will be going to Canada this weekend",
+                        time: "Toworrow",
                       )
                     ],
                   );
@@ -116,9 +127,9 @@ class TodoWidget extends StatelessWidget {
       child: Card(
         elevation: 10,
         child: ListTile(
-          leading: const Icon(
+          leading: Icon(
             Icons.check_circle_outline,
-            color: Colors.pink,
+            color: paint(time),
           ),
           title: Text(task),
           subtitle: Text(
@@ -129,14 +140,14 @@ class TodoWidget extends StatelessWidget {
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(
+              Icon(
                 Icons.notifications,
-                color: Colors.pink,
+                color: paint(time),
               ),
               Text(
                 time,
-                style: const TextStyle(
-                  color: Colors.pink,
+                style: TextStyle(
+                  color: paint(time),
                 ),
               ),
             ],
