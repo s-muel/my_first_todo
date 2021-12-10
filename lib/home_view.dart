@@ -13,6 +13,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final List<Map<String, dynamic>> completedTask = [];
+
   final List<Map<String, dynamic>> mydatabase = [
     {
       'title': 'Plan trip to Accra',
@@ -30,12 +32,17 @@ class _HomeViewState extends State<HomeView> {
       'title': 'Grade assignment',
       'description': 'Grade the assignment before the ending of December',
       'time': 'Today',
-      'isCompleted': false
+      'isCompleted': true
     }
   ];
 
   @override
   Widget build(BuildContext context) {
+    for (var element in mydatabase) {
+      if (element['isCompleted'] == true) {
+        completedTask.add(element);
+      }
+    }
     return Scaffold(
       backgroundColor: const Color.fromRGBO(245, 243, 243, 1),
       appBar: AppBar(
@@ -85,25 +92,19 @@ class _HomeViewState extends State<HomeView> {
             showBarModalBottomSheet(
                 context: context,
                 builder: (context) {
-                  return ListView(
-                    children: const [
-                      TodoWidget(
-                        task: "Plan Trip to Canada",
-                        description: "I will be going to Canada this weekend",
-                        time: "Yesterday",
-                      ),
-                      TodoWidget(
-                        task: "Plan Trip to Canada",
-                        description: "I will be going to Canada this weekend",
-                        time: "Today",
-                      ),
-                      TodoWidget(
-                        task: "We will learn about dummy database",
-                        description: "I will be going to Canada this weekend",
-                        time: "Toworrow",
-                      )
-                    ],
-                  );
+                  return ListView.separated(
+                      itemBuilder: (context, index) {
+                        return TodoWidget(
+                            task: completedTask[index]['title'],
+                            description: completedTask[index]['description'],
+                            time: completedTask[index]['time']);
+                      },
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(
+                          height: 10,
+                        );
+                      },
+                      itemCount: completedTask.length);
                 });
           },
           child: Card(
@@ -112,18 +113,18 @@ class _HomeViewState extends State<HomeView> {
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Row(
-                children: const [
-                  Icon(Icons.check_circle),
-                  SizedBox(
+                children: [
+                  const Icon(Icons.check_circle),
+                  const SizedBox(
                     width: 10,
                   ),
-                  Text("Completed"),
-                  SizedBox(
+                  const Text("Completed"),
+                  const SizedBox(
                     width: 3,
                   ),
-                  Icon(Icons.arrow_drop_down),
-                  Spacer(),
-                  Text("24")
+                  const Icon(Icons.arrow_drop_down),
+                  const Spacer(),
+                  Text(completedTask.length.toString())
                 ],
               ),
             ),
