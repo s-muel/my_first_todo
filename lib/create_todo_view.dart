@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 class CreateToDo extends StatelessWidget {
   CreateToDo({Key? key}) : super(key: key);
   final GlobalKey<FormState> createATodokey = GlobalKey();
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController dateController = TextEditingController();
+  final TextEditingController timeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +19,7 @@ class CreateToDo extends StatelessWidget {
         child: ListView(
           children: [
             TextFormField(
+              controller: titleController,
               validator: (value) {
                 if (value!.isEmpty) {
                   return "This Field must not be empty";
@@ -26,6 +31,7 @@ class CreateToDo extends StatelessWidget {
               height: 100,
             ),
             TextFormField(
+              controller: descriptionController,
               validator: (value) {
                 if (value!.isEmpty) {
                   return "This Field must not be empty";
@@ -40,6 +46,17 @@ class CreateToDo extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextFormField(
+                    controller: dateController,
+                    onTap: () {
+                      showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.now(),
+                              lastDate:
+                                  DateTime.now().add(const Duration(days: 365)))
+                          .then((value) =>
+                              dateController.text = value.toString());
+                    },
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "This Field must not be empty";
@@ -53,6 +70,13 @@ class CreateToDo extends StatelessWidget {
                 ),
                 Expanded(
                   child: TextFormField(
+                    controller: timeController,
+                    onTap: () {
+                      showTimePicker(
+                              context: context, initialTime: TimeOfDay.now())
+                          .then((value) =>
+                              timeController.text = value!.format(context));
+                    },
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "This Field must not be empty";
